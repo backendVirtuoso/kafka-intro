@@ -1,12 +1,15 @@
 spring:
   kafka:
-    # Kafka ?? ?? (EC2? ???? ???? ??? EC2 ??? ???? ??.)
-    bootstrap-servers: ${ec2_public_ip}:9092
+    # Kafka 서버 주소 (EC2에 카프카를 설치했기 때문에 EC2 주소를 입력해야 한다.)
+    bootstrap-servers:
+     - ${ec2_public_ip}:9092
+     - ${ec2_public_ip}:19092
+     - ${ec2_public_ip}:29092
     producer:
-      # ???? key ??? ?? : ?? ??? ???(String)? ???? Kafka? ??
+      # 메시지의 key 직렬화 방식 : 자바 객체를 문자열(String)로 변환해서 Kafka에 전송
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      # ???? value ??? ?? : ?? ??? ???(String)? ???? Kafka? ??
+      # 메시지의 value 직렬화 방식 : 자바 객체를 문자열(String)로 변환해서 Kafka에 전송
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
-        # ??? ?? ???? ?? ??
+        # 라운드 로빈 방식으로 설정 변경
         partitioner.class: org.apache.kafka.clients.producer.RoundRobinPartitioner
