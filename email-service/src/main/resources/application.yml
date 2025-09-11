@@ -6,9 +6,9 @@ spring:
   kafka:
     # ???? Kafka ?? ??
     bootstrap-servers:
-      - 3.35.209.233:9092
-      - 3.35.209.233:19092
-      - 3.35.209.233:29092
+      - ${ec2_public_ip}:9092
+      - ${ec2_public_ip}:19092
+      - ${ec2_public_ip}:29092
     consumer:
       # ???? key ???? ?? : Kafka?? ??? ???? String?? ??
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
